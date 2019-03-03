@@ -127,7 +127,7 @@ export default {
     footerVue,
   },
   data:function() { return {productImages: [
-      {id:1, loc:'@/assets/product-image1.jpg'},
+      {id:1, loc:'../../public/img/product-image1.jpg'},
       {id:2, loc:'@/assets/product-image2.jpg'},
       {id:3, loc:'@/assets/product-image3.jpg'},
       {id:4, loc:'@/assets/product-image4.jpg'}]

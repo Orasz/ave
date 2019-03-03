@@ -26,15 +26,24 @@
             <div class="sign-grid">
                 <div class="sign-grid__element" id="signIn"><b>SIGN IN</b> </div>
                 <div class="sign-grid__element" id="sign-register"><b>REGISTER</b> </div>
-                <div class="sign-grid__element" id="sign-email-left"><form><input type="text" name="sign-email" value="Your Email" style="width: 90%"></form> </div>
-                <div class="sign-grid__element" id="sign-email-right"><form><input type="text" name="sign-email" value="Your Email" style="width: 100%"></form> </div>
-                <div class="sign-grid__element" id="sign-password-left"><form><input type="text" name="sign-password" value="Your Password" style="width: 90%"></form> </div>
-                <div class="sign-grid__element" id="sign-password-right"><form><input type="text" name="sign-password" value="Your Password" style="width: 100%"></form> </div>
-                <div class="sign-grid__element" id="sign-button-div"><button id="sign-button">Sign In</button></div>
+        
+                <div class="sign-grid__element" id="sign-email-left"><form> <input type="text" name="sign-email" placeholder="Your Email" style="width: 90%"
+                                                                                v-model="form.inEmail" v-validate="'email'" data-vv-as="email">
+                                                                                </form><span>{{ errors.first('sign-email') }} </span> </div>
+                <div class="sign-grid__element" id="sign-password-left"><form><input v-validate="'required'" type="password" name="sign-password" placeholder="Your Password" style="width: 90%"></form> </div>
+                <div class="sign-grid__element" id="sign-button-div"><button id="sign-button" type="submit"  >Sign In</button></div>
+         
+                <div class="sign-grid__element" id="sign-email-right"><form><input type="text" name="sign-up-email" placeholder="Your Email" style="width: 100%"
+                                                                                v-model="form.upEmail" v-validate="'email'" data-vv-as="email">
+                                                                                <span>{{ errors.first('sign-up-email') }} </span></form> </div>
+                <div class="sign-grid__element" id="sign-password-right"><form><input type="password" name="sign-password" v-validate="'required|min:8'" ref="sign-password" placeholder="Your Password" style="width: 100%"></form> </div>
+                <span v-show="errors.has('password')">{{ errors.first('sign-password') }}</span>
+
+                <div class="sign-grid__element" id="confirm-pass"><form><input   v-validate="'required|confirmed:sign-password'" name="password_confirmation" type="password" placeholder="Password, Again" data-vv-as="password" style="width: 100%"></form> </div>
+                <div class="sign-grid__element" id="createAccount-div"><button id="createAccount">CREATE ACCOUNT</button> </div>
+            
                 <div class="sign-grid__element" id="forgot-pass"><a href="">Forgot your Password</a> </div>
-                <div class="sign-grid__element" id="confirm-pass"><form><input type="text" name="confirm-password" value="Confirm Password" style="width: 100%"></form> </div>
                 <div class="sign-grid__element" id="newsletter"><form><input type="checkbox" name="newsletter" value="" checked> sign up for exclusive updates, discounts, and more!</form></div>
-                <div class="sign-grid__element" id="createAccount-div"><button id="createAccount">CREATE ACCOUNT</button></div>
                 <div class="sign-grid__element" id="privacy"><a href="">By clicking on Create Account you<br>
                                                                          agree on our Privacy Policy</a> </div>
             </div>
@@ -45,12 +54,31 @@
 
 <script>
 import footerVue from '@/components/Footer.vue'
+import Vue from 'vue'
+import VeeValidate from 'vee-validate'
+
+Vue.use(VeeValidate);
 
 export default {
     name: 'sign',
     components:{
         footerVue,
-
+    },
+    data: function(){
+        return{
+            form:{
+                inEmail: "",
+                upEmail:"",
+                password:""
+            },
+            isSubmitted: false
+        }
+    },
+    methods:{
+        SubmitForm(){
+            this.isSubmitted = true;
+            this.form = null;
+        }
     }
 }
 </script>
