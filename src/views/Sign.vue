@@ -40,7 +40,7 @@
                 <span v-show="errors.has('password')">{{ errors.first('sign-password') }}</span>
 
                 <div class="sign-grid__element" id="confirm-pass"><form><input   v-validate="'required|confirmed:sign-password'" name="password_confirmation" type="password" placeholder="Password, Again" data-vv-as="password" style="width: 100%"></form> </div>
-                <div class="sign-grid__element" id="createAccount-div"><button id="createAccount">CREATE ACCOUNT</button> </div>
+                <div class="sign-grid__element" id="createAccount-div"><button id="createAccount" type="submit">CREATE ACCOUNT</button> </div> <!-- v-if (2 password are ==) v-on clicked = submitForm-->
             
                 <div class="sign-grid__element" id="forgot-pass"><a href="">Forgot your Password</a> </div>
                 <div class="sign-grid__element" id="newsletter"><form><input type="checkbox" name="newsletter" value="" checked> sign up for exclusive updates, discounts, and more!</form></div>

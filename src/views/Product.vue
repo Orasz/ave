@@ -22,6 +22,7 @@
 
 
 <!--content section-->
+    
 
 
     <footerVue/>   
@@ -30,6 +31,7 @@
 
 <script>
 import footerVue from '@/components/Footer.vue'
+
 
 export default {
     name: 'product',

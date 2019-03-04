@@ -46,21 +46,11 @@
                         </div>
                     </div>
         </header>
-      <!--ora c'è da fare una grid con 6 colonne (2%,24%24%(x2),2%) per il content-->
-        <!--div id="content">
-        <template v-if="items.length > 0" class="content-section__item">
-                <div v-for="prodImage in items.img" :key="prodImage.id"-->
-                    <!--a :href="prodImage.link"-->
-                        <!--img :src="prodImage.standard_resolution" alt="product image"/-->
-                    <!--/a-->
-                <!--/div>
-            </template>
-        </div-->
 
     <section id="home" class="" >
 	<ul  class="content-grid-list">
 		<li v-for="prodimg in productImages" :key=prodimg.id>
-			<a  v-bind:style="{ backgroundImage: 'url(' + prodimg.loc + ')' }" target="_blank"></a>
+			<a  v-bind:style="{ backgroundImage: 'url(' + prodimg.loc + ')' }" target="_blank"><router-link to="/product"></router-link><router-view/></a>
 		</li>
 	</ul>
     </section>
@@ -109,14 +99,13 @@
             </div>
         </div>
     </section>
-    <!--footer, layout a 9 colonne-->
+    <!--footer, 9 columns layout-->
    <footerVue/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-//import HelloWorld from '@/components/HelloWorld.vue'
 import footerVue from '@/components/Footer.vue'
 
     
@@ -127,10 +116,11 @@ export default {
     footerVue,
   },
   data:function() { return {productImages: [
-      {id:1, loc:'../../public/img/product-image1.jpg'},
-      {id:2, loc:'@/assets/product-image2.jpg'},
-      {id:3, loc:'@/assets/product-image3.jpg'},
-      {id:4, loc:'@/assets/product-image4.jpg'}]
+      {id:1, loc:require('@/assets/product-image1.jpg')},
+      {id:2, loc:require('@/assets/product-image2.jpg')},
+      {id:3, loc:require('@/assets/product-image3.jpg')},
+      {id:4, loc:require('@/assets/product-image4.jpg')},
+      ] 
   }
   }
 }
@@ -283,7 +273,7 @@ export default {
     border: solid black 1px;
     background-color: inherit;
     color: darkslategrey;
-    top: 80%;
+    top: 70%;
     right:20%;
 }
 .content-section{
@@ -328,19 +318,9 @@ export default {
     grid-area: p;
 }
 
-
-
 .lookbook-button{
-    /*position: absolute;
-    right: 8%;
-    bottom: 10%;
-    clear: none;*/
     grid-area: button;
 }
-
-
-
-
 
 </style>
 
